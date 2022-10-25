@@ -1,12 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React, { useState, useEffect} from 'react';
-import Header from "../components/Header/Header";
 import styles from '../assets/styles/scss/main.module.scss';
 import HeroSlider from 'components/Sections/HeroSlider/HeroSlider';
 import Box from 'components/Sections/Box/Box';
 import FanSlider from 'components/Sections/FanSlider/FanSlider';
 import { Container } from '@mui/material';
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 const Home: NextPage = () => {
     
@@ -34,7 +35,7 @@ const Home: NextPage = () => {
         <FanSlider/>
     <Box/>
     </Container>
-        
+        <Footer/>
       
       </div>
     );

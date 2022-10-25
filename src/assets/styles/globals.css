@@ -151,3 +151,13 @@ a {
 a:visited {
     color: unset;
 }
+
+.iconClasss {
+    color: white !important; 
+    size: 80px !important;
+}
+
+
+  .iconClass:hover
+ {   color: rgb(245,197,24)  !important;
+  }
