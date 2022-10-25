@@ -1,0 +1,32 @@
+
+.Grid {
+    background-color: black;
+    color: white;
+    margin-top: 100px;
+    display: grid;
+    gap: 20px;
+    grid-template-rows: repeat(5, 50px);
+    &>div {
+        padding-top: 10px;
+
+    }
+}
+.Row {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+align-items: space-around;
+&:hover >p {
+    border-bottom-style: 1px solid white;
+}
+
+}
+
+
+.text:hover {
+    border-bottom: 1px solid white;
+    -webkit-transform-origin: 0 100%;
+
+}
+

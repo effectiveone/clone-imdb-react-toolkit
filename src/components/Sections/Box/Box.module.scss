@@ -1,0 +1,45 @@
+
+     .title{ line-height: 2.5rem;
+      color: rgb(245,197,24);
+      text-decoration: inherit;
+      text-transform: inherit;
+      font-weight: 500;
+      font-size:  34px;
+      position: absolute;
+      top: 15%;
+grid-row: 1/2
+
+     }
+
+
+
+
+   
+
+
+ .box {
+    grid-row: 2/3;
+
+    gap: 100px; 
+    position: relative; 
+    paddingTop: 200px; display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    .arrow {
+        display: none !important;
+    }
+    &:hover {
+      
+
+         .arrow {
+            display: block !important;
+        }
+    }
+}
+     
+.container{
+    position:relative;
+    display: grid;
+    justify-content:center;
+    margin-bottom:250px;
+    grid-template-rows: 90px 1fr;
+    }

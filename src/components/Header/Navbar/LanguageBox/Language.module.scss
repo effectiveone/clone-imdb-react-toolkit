@@ -1,0 +1,84 @@
+
+
+ .DropDownContainer{
+    width: 50px;
+    margin: 0 auto;
+    blackground-color: rgba(0,0,0,0.9) !important;
+    color: white;
+    pading: 15px 0 15px 0;
+  
+  }
+   .DropDownHeader {
+      transform: translateY(10px);
+      blackground-color: white !important;
+  
+    margin-bottom: 0.8em;
+    padding: 0.4em 2em 0.4em 1em;
+    border-radious:  5px;
+    font-weight: 500;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    color: white;}
+  
+   .DropDownListContainer {
+      blackground-color: white !important;
+  
+      top: 70px;
+      transform: translateX(-180px);
+    position: absolute;
+    z-index: 100;
+    width: 240px;
+  }
+  
+   .DropDownList {
+   
+  
+        padding: 0;
+    margin: 0;
+    padding-left: 1em;
+    background: #5A5A5A !important;
+    box-sizing: border-box;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 500;
+    &:first-child {
+      padding-top: 0.8em;
+    }
+   }
+  
+  .ListItem {
+      pading: 15px 0 15px 0;
+    list-style: none;
+    margin-bottom: 0.8em;
+    &:hover {
+      background: #5A5A5A !important;
+      opacity: 0.6;
+    }
+  }
+  
+  .Grid{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 10px;
+  }
+  
+  .Attribute {
+    transform: translateX(-20px);
+    pointer-events: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 24px;
+  }
+  .AttributeBis {
+    padding-left: 10px;
+    font-size: 24px;
+  
+  position: absolute;
+  transform: translateX(20px);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  pointer-events: none;
+  padding-right: 5px;
+  }

@@ -1,0 +1,113 @@
+$titleColor: rgb(245,197,24);
+
+
+    .gridSlide {
+        display: grid;
+        grid-template-columns: 85fr 45fr;
+        grid-template-rows: 50px 1fr 1fr 1fr 50px;
+        height: 550px;
+        gap: 10px;
+    
+        }
+        .mainSlide {
+       
+        position: relative;
+        grid-area: 1 / 1 / 6 / 2;}
+        .textSlide {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          grid-area: 1 / 2 / 1 / 3;
+          & h2 {
+          color: $titleColor;
+          font-size: 30px;
+          font-bold: 600;}
+       }
+        .comSlide {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        grid-area: 5/2/6/3;
+        & h2 {
+          color: white;
+          font-size: 30px;
+          font-bold: 600;}
+        
+        }
+        .secondSlide {
+   
+          display: grid;
+          grid-template-columns: 90px  1fr; 
+          gap: 10px;
+        grid-area: 4/2/5/3;}
+        .thirdSlide {
+          display: grid;
+          grid-template-columns: 90px  1fr; 
+          gap: 10px;
+        grid-area: 3/2/4/3;}
+        .firstSlide {
+          background-color: white; 
+          background-image: linear-gradient(rgba(0,0,0,0.9), black);
+        grid-area: 2/2/3/3;
+        display: grid;
+        grid-template-columns: 90px  1fr; 
+        gap: 10px;
+
+        }
+        .firstSlide  > div:nth-child(1) {
+          color:white;
+
+        grid-area: 1/1/1/2
+        }
+        
+        .firstSlide  > div:nth-child(2) {
+        color:white;
+        grid-area: 1/2/1/3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly !important;
+        align-items: flex-start !important;
+  
+        }
+        .HeroSlider {
+          background-color: black;
+}
+
+.secondSlide  > div:nth-child(1) {
+  color:white;
+
+grid-area: 1/1/1/2
+}
+
+.secondSlide  > div:nth-child(2) {
+color:white;
+grid-area: 1/2/1/3;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly !important;
+align-items: flex-start !important;
+
+}
+
+.thirdSlide  > div:nth-child(1) {
+  color:white;
+
+grid-area: 1/1/1/2
+}
+
+.thirdSlide  > div:nth-child(2) {
+color:white;
+grid-area: 1/2/1/3;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly !important;
+align-items: flex-start !important;
+
+}
+
