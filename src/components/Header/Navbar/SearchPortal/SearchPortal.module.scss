@@ -1,0 +1,20 @@
+.results {
+    height: 50px;
+     background: #313131; 
+     display: flex; 
+     align-items: center;
+      padding-left: 10px;
+
+     & p {
+        color: white;
+      }
+
+      &:hover {
+        background: #4f4d4d;
+
+      }
+}
+
+.box:hover {
+    background: #4f4d4d;
+}

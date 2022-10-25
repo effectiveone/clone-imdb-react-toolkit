@@ -113,7 +113,7 @@ const [name, setName] = useState("love");
 const Portals = () => {
   if (!open) return null;
   return ReactDOM.createPortal(
-<SearchPortal/> ,document.body);
+<SearchPortal name={name}/> ,document.body);
   }
 
   

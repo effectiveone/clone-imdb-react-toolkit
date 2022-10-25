@@ -23,7 +23,7 @@ const SearchBox: React.FC= () => {
 
 
     const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(0);
 
 
   const toggling = () => setIsOpen(!isOpen);
@@ -48,7 +48,7 @@ const SearchBox: React.FC= () => {
  
       <div className={styles.DropDownContainer}>
         <div className={styles.DropDownHeader} onClick={toggling}>
-          All { isOpen ? 
+          {options[selectedOption].name} { isOpen ? 
           <IconContext.Provider value={{ color: "black",  className: "global-class-name" }}>
           <div>
           <BiChevronDown/>
@@ -66,8 +66,8 @@ const SearchBox: React.FC= () => {
           <div className={styles.DropDownListContainer }
           ref={inputElement}>
             <ul className={styles.DropDownList}>
-              {options.map(option => (
-                <li className={styles.ListItem} onClick={onOptionClicked(option)} key={Math.random()}>
+              {options.map((option, ind) => (
+                <li className={styles.ListItem} onClick={onOptionClicked(ind)} key={Math.random()}>
      <div className={styles.Grid}>
        <div className={styles.Attribute} >{option.comp}
  </div>  
