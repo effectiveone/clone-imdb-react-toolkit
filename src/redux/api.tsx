@@ -33,5 +33,4 @@ export const fetchCrew = async (movieId: number) =>
   export const fetchCategory = async (movieId: string) =>
   axios.get(
     `${category}`
-  ).then(rest =>{
-    console.log("rest", rest)})
+  )

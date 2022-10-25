@@ -1,6 +1,5 @@
-import { PayloadAction } from "@reduxjs/toolkit";
 import { takeLatest, put, fork, call } from "redux-saga/effects";
-import { fetchMovie, fetchMovies, fetchAllMovie, fetchCrew, fetchTheMostPopularMovie, fetchUpcomingMovie } from "./api";
+import { fetchMovie, fetchMovies, fetchAllMovie, fetchCrew, fetchTheMostPopularMovie, fetchUpcomingMovie } from "./Api";
 import {
   getCrew,
   setCrew,
@@ -16,10 +15,10 @@ import {
   setUpcomingMovie
 } from "./reducers/movieSlice";
 
-function* onLoadMoviesAsync( {payload }: PayloadAction) {
+function* onLoadMoviesAsync({ payload }) {
   try {
     const movieName = payload;
-    const response = yield* call(fetchMovies, movieName);
+    const response = yield call(fetchMovies, movieName);
     if (response.status === 200) {
       yield put(setMovies({ ...response.data }));
     }
@@ -28,10 +27,10 @@ function* onLoadMoviesAsync( {payload }: PayloadAction) {
   }
 }
 
-function* onLoadMovieAsync({payload }: PayloadAction) {
+function* onLoadMovieAsync({ payload }) {
   try {
     const movieId = payload;
-    const response = yield* call(fetchMovie, movieId);
+    const response = yield call(fetchMovie, movieId);
     if (response.status === 200) {
       yield put(setMovie({ ...response.data }));
     }
@@ -40,10 +39,10 @@ function* onLoadMovieAsync({payload }: PayloadAction) {
   }
 }
 
-function* onLoadCrewAsync({payload }: PayloadAction) {
+function* onLoadCrewAsync({ payload }) {
   try {
     const crewID = payload;
-    const response = yield* call(fetchCrew, crewID);
+    const response = yield call(fetchCrew, crewID);
     if (response.status === 200) {
       yield put(setCrew({ ...response.data }));
     }
@@ -52,10 +51,10 @@ function* onLoadCrewAsync({payload }: PayloadAction) {
   }
 }
 
-function* onLoadCategoryMoviesAsync({payload }: PayloadAction) {
+function* onLoadCategoryMoviesAsync({ payload }) {
   try {
     const categoryName = payload;
-    const response = yield* call(fetchAllMovie, categoryName);
+    const response = yield call(fetchAllMovie, categoryName);
     if (response.status === 200) {
       yield put(setCategoryMovies({ ...response.data }));
     }
@@ -65,10 +64,10 @@ function* onLoadCategoryMoviesAsync({payload }: PayloadAction) {
 }
 
 
-function* onLoadTheMostPopularAsync({payload }: PayloadAction) {
+function* onLoadTheMostPopularAsync({ payload }) {
   try {
     const categoryName = payload;
-    const response = yield* call(fetchTheMostPopularMovie, categoryName);
+    const response = yield call(fetchTheMostPopularMovie, categoryName);
     if (response.status === 200) {
       yield put(setTheMostPopular({ ...response.data }));
     }
@@ -77,7 +76,7 @@ function* onLoadTheMostPopularAsync({payload }: PayloadAction) {
   }
 }
 
-function* onLoadUpcomingMovieAsync({payload }: PayloadAction) {
+function* onLoadUpcomingMovieAsync({ payload }) {
   try {
     const categoryName = payload;
     const response = yield call(fetchUpcomingMovie, categoryName);

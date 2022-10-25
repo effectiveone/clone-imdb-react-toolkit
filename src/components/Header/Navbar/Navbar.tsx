@@ -1,10 +1,11 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import Link from 'next/link';
 import uuid from 'react-uuid';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 // import { useDispatch, useSelector } from "react-redux";
 import {Container} from "@mui/material"
 import { getCategoryMovies } from "../../../redux/reducers/categorySlice";
+import { getMovies } from "../../../redux/reducers/movieSlice";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios';
 import { styled, alpha } from '@mui/material/styles';
@@ -21,12 +22,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconContext } from "react-icons";
 import {FaImdb } from "react-icons/fa";
-
+import ReactDOM from 'react-dom';
 import AddIcon from '@mui/icons-material/Add';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Logo from "../../../assets/images/IMDB_Logo_2016.svg"
 import SearchBox from "./SearchBox/SearchBox";
 import LanguageBox from "./LanguageBox/LanguageBox"
+import SearchPortal from "./SearchPortal/SearchPortal"
 
 
 import Divider from '@mui/material/Divider';
@@ -93,10 +95,44 @@ const Search = styled('div')(({ theme }) => ({
 
 
 const Navbar: React.FC = () => {
+// Search Portal
+const [name, setName] = useState("love");
+  const [open, setOpen] = useState(false);
+  const {
+    moviesList
+  } = useAppSelector((state) => ({ ...state.movie }));
+
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getMovies(name));
+  }, [name, dispatch]);
+
+ console.log("moviesList",moviesList)
+
+  const inputSearch = useRef();
+const Portals = () => {
+  if (!open) return null;
+  return ReactDOM.createPortal(
+<SearchPortal/> ,document.body);
+  }
+
+  
+
+  useEffect(() => {
+    window.onclick = (event) => {
+      if (event.target.contains(inputSearch.current)
+        && event.target !== inputSearch.current) {     
+          setOpen(false)
+      }
+    }
+}, []);
 
 
-  const { category, loading, error } = useAppSelector(state=>state.category);
+
+  //Another
+
+
+  const { category, loading } = useAppSelector(state=>state.category);
   
   useEffect(() => {
   
@@ -227,8 +263,14 @@ const Navbar: React.FC = () => {
           <Search>
   
             <StyledInputBase
+              ref={inputSearch}
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={({target: {value}}) => {
+                setName(value)
+                setOpen(true)
+               
+              }}
             />
           </Search>
           
@@ -236,6 +278,7 @@ const Navbar: React.FC = () => {
 <SearchIcon />
 </SearchIconWrapper>
           </SearchContainer>
+          <Portals/>
           <Divider orientation="vertical" flexItem style={{color: "green"}} />
 
           <Box sx={{ flexGrow: 1, alignItems: "center" }} >
