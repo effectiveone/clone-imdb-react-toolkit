@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import SliderArrows from "../HeroSlider/SliderArrows/SliderArrows"
 import { Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
@@ -9,13 +9,31 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import styles from "./Box.module.scss"
 import { CardActionArea } from '@mui/material';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
+import { getTheMostPopular } from "../../../redux/reducers/movieSlice";
 
+import apiConfig from "../../../redux/apiConfig"
 
 
 
 
 
 function Box() {
+  const dispatch = useAppDispatch();
+    const {  movieMostPopular, isLoading } = useAppSelector(state=>state.movie);
+    const {
+      lang
+      } = useAppSelector(state=>state.language);
+    const slides = movieMostPopular?.results
+
+    useEffect(() => {
+    
+    dispatch(getTheMostPopular(lang));
+
+    }, [dispatch]);
+
+
+
   const [slideItem, setSlideItem] = useState(0)
  
   const incrementCountSlide = () => {
@@ -49,11 +67,11 @@ function Box() {
 >Featured today</h1>
 <div className={styles.box}>
 
-{firstSlider.slice(slideItem, (slideItem+2)).map((movie, i) => (
+{slides?.slice(slideItem, (slideItem+2)).map((movie, i) => (
   <React.Fragment key={i}>
 
   <ActionAreaCard 
-  image={movie.img}
+  image={apiConfig.w500Image(movie.poster_path)}
   title={movie.title}
 
   />

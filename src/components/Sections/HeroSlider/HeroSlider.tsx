@@ -2,27 +2,43 @@ import React, { useState, useEffect} from 'react'
 import Image from 'next/image';
 import styles from "./HeroSlider.module.scss"
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
-import { getUpcomingMovie } from "../../../redux/reducers/movieSlice";
+import { getUpcomingMovie, setUpcomingMovie } from "../../../redux/reducers/movieSlice";
+
 import apiConfig from "../../../redux/apiConfig"
 import SliderArrows from "./SliderArrows/SliderArrows"
 import { IconContext } from "react-icons";
 import { BsPlayCircle } from "react-icons/bs";
+import Link from 'next/link'
+
 
 
 const HeroSlider: React.FC = () => {
 // fetching date from redux
 const dispatch = useAppDispatch();
+
 const {  Upcoming_movie, isLoading } = useAppSelector(state=>state.movie);
 const slide = Upcoming_movie?.results
+const {
+lang
+} = useAppSelector(state=>state.language);
+
 
     useEffect(() => {
-    
-    dispatch(getUpcomingMovie());
+ 
+    dispatch(getUpcomingMovie(lang));
+    }, [dispatch, lang]);
 
-    }, [dispatch]);
+    function timeConvert(n) {
+      if(isNaN(n) ){return "3:30"}
 
-    console.log( "Upcoming_movie",  Upcoming_movie)
-// useState hooks
+      var num = n;
+      var hours = (num / 60);
+      var rhours = Math.floor(hours);
+      var minutes = (hours - rhours) * 60;
+      var rminutes = Math.round(minutes);
+      return  rhours + " : " + rminutes ;
+      }
+
 const [numberOfSlide, setNumberOfSLide] = useState(0)    
 const incrementCount = () => {
     numberOfSlide === slide.length-5 ? setNumberOfSLide(0) :
@@ -54,12 +70,12 @@ postition: "relative"
        left: "10%", 
        display: "grid",
         gridTemplateColumns: "2fr auto" }}>
-     <img
+     <Link href={`/movie/${slide[numberOfSlide].id}`}><img
       src={apiConfig.w500Image(slide[numberOfSlide].poster_path)}
       alt="Picture of the author"
       width={170}
       height={240}
-    />
+    /></Link>
     <div style={{display: "grid", 
      alignSelf: "flex-end", 
                width: "100%", 
@@ -83,16 +99,14 @@ postition: "relative"
            flexWrap: "wrap",
 
              color: "white"}}>
-<h2
+<Link href={`/movie/${slide[numberOfSlide].id}`}><h2
 style={{
     fontWeight: 400,
     fontSize: "28px",
     color: "white"
 }}
->
-
-  {slide[numberOfSlide].title}</h2>
-<span>{slide[numberOfSlide].overview.substring(0,100)}...</span>
+>{slide[numberOfSlide].title}</h2></Link>
+<Link href={`/movie/${slide[numberOfSlide].id}`}><span>{slide[numberOfSlide].overview.substring(0,100)}...</span></Link>
 </div>
 
 </div>
@@ -118,12 +132,12 @@ style={{
 </div>
 <div className={styles.firstSlide}>
 <div>
-<img
+<Link href={`/movie/${slide[numberOfSlide +1].id}`}><img
       src={apiConfig.w500Image(slide[numberOfSlide +1]?.poster_path)}
       alt="Picture of the author"
       width={90}
       height={130}
-    /></div>
+    /></Link></div>
    
         <div style={{display: "flex", flexDirection: "column",  alignItems: "center"}}>
         <IconContext.Provider value={{ color: "white", size: "40px", className: "iconClass",  }}>
@@ -131,11 +145,11 @@ style={{
         <div className={styles.iconClass} style={{display: "flex", justifyContent: "space-between", alignItems: "center", }}>
       <BsPlayCircle />
       {"  "}
-      <p style={{paddingLeft: "15px"}}>3:20</p>
+      <p style={{paddingLeft: "15px"}}>{timeConvert(slide[numberOfSlide +1].runtime)}</p>
     </div>
   </IconContext.Provider>
-<strong>{slide[numberOfSlide +1 ].title}</strong>
-<p>{slide[numberOfSlide +1].overview.substring(0,100)}...</p>
+  <Link href={`/movie/${slide[numberOfSlide +1].id}`}><strong>{slide[numberOfSlide +1 ].title}</strong></Link>
+  <Link href={`/movie/${slide[numberOfSlide +1].id}`}><p>{slide[numberOfSlide +1].overview.substring(0,100)}...</p></Link>
 </div>
 
 
@@ -145,45 +159,45 @@ style={{
 <div className={styles.secondSlide}>
 
 <div>
-<img
+<Link href={`/movie/${slide[numberOfSlide +2].id}`}><img
       src={apiConfig.w500Image(slide[numberOfSlide +2]?.poster_path)}
       alt="Picture of the author"
       width={90}
       height={130}
-    /></div>
+    /></Link></div>
    
         <div style={{display: "flex", flexDirection: "column",  alignItems: "center"}}>
         <IconContext.Provider value={{ color: "white", size: "40px", className: "iconClass",  }}>
         <div className={styles.iconClass} style={{display: "flex", justifyContent: "space-between", alignItems: "center", }}>
       <BsPlayCircle />
       {"  "}
-      <p style={{paddingLeft: "15px"}}>3:20</p>
+      <p style={{paddingLeft: "15px"}}>{timeConvert(slide[numberOfSlide +2].runtime)}</p>
     </div>
   </IconContext.Provider>
-<strong>{slide[numberOfSlide +2 ].title}</strong>
-<p>{slide[numberOfSlide +2].overview.substring(0,100)}...</p>
+  <Link href={`/movie/${slide[numberOfSlide +2].id}`}><strong>{slide[numberOfSlide +2 ].title}</strong></Link>
+  <Link href={`/movie/${slide[numberOfSlide +2].id}`}><p>{slide[numberOfSlide +2].overview.substring(0,100)}...</p></Link>
 </div>
 </div>
 <div className={styles.thirdSlide}>
 
 <div>
-<img
+<Link href={`/movie/${slide[numberOfSlide +3].id}`}><img
       src={apiConfig.w500Image(slide[numberOfSlide +3]?.poster_path)}
       alt="Picture of the author"
       width={90}
       height={130}
-    /></div>
+    /></Link></div>
    
         <div style={{display: "flex", flexDirection: "column",  alignItems: "center"}}>
         <IconContext.Provider value={{ color: "white", size: "40px", className: "iconClass",  }}>
     <div className={styles.iconClass} style={{display: "flex", justifyContent: "space-between", alignItems: "center", }}>
       <BsPlayCircle />
       {"  "}
-      <p style={{paddingLeft: "15px"}}>3:20</p>
+      <p style={{paddingLeft: "15px"}}>{timeConvert(slide[numberOfSlide +3].runtime)}</p>
     </div>
   </IconContext.Provider>
-<strong>{slide[numberOfSlide +3 ].title}</strong>
-<p>{slide[numberOfSlide +3].overview.substring(0,100)}...</p>
+  <Link href={`/movie/${slide[numberOfSlide +3].id}`}><strong>{slide[numberOfSlide +3 ].title}</strong></Link>
+  <Link href={`/movie/${slide[numberOfSlide +3].id}`}><p>{slide[numberOfSlide +3].overview.substring(0,100)}...</p></Link>
 </div>
 </div>
 <div className={styles.comSlide}><h2>Browse trailers </h2></div>

@@ -2,6 +2,8 @@ import react from "react"
 import styles from "./FanSlider.module.scss"
 import { Rating } from '@mui/material';
 import apiConfig from "../../../redux/apiConfig"
+import Link from 'next/link'
+
 
 const SlideSchema = (props: any) =>  {
     console.log("image",props.img)
@@ -9,11 +11,11 @@ const SlideSchema = (props: any) =>  {
 
 <div className={styles.slideContainer}>
 <div style={styles.imageblock}>
-<img src={apiConfig.w500Image(props.img)}
+<Link href={`/movie/${props.id}`}><img src={apiConfig.w500Image(props.img)}
 width="180"
 height="270px"
 
-/>
+/></Link>
 </div>
 <div className={styles.box}>
 <div>
@@ -21,7 +23,7 @@ height="270px"
 <Rating name="no-value" max={1} value={null} 
 />
 </div>
-<div><h3>{props.title}</h3></div>
+<div><Link href={`/movie/${props.id}`}><h3>{props.title}</h3></Link></div>
 <div>Watch now</div>
 <div>Trailer</div>
 </div>

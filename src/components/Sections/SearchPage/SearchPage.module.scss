@@ -1,0 +1,45 @@
+@import 'assets/styles/scss/main.module.scss';
+
+.results {
+    padding-top: 50px;
+
+    height: 50px;
+     background: #313131; 
+     display: flex; 
+     align-items: center;
+      padding-left: 10px;
+
+     & p {
+        color: white;
+      }
+
+      &:hover {
+        background: $hoverGrey;
+
+      }
+}
+
+
+
+.box {
+    display: flex; 
+     alignItems: center;
+    //   background: #313131;
+    //   &:nth-of-type(2n) {
+    //     background-color: red;
+    //   }
+    //   &:nth-of-type(2n +1) {
+    //     background-color: red;
+    //   }
+     
+      &:hover 
+      {
+        background: $hoverGrey;
+      }
+}
+
+.borderSet {
+    border: 0.5px solid black;
+    padding: 20px 20px 20px 20px;
+    border-radius: 1%;
+}

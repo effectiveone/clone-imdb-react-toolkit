@@ -1,63 +1,51 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface movieState {
-  moviesList: Array<object[]>;
-    movieFullList: Array<object[]>;
-    movie: number,
-    crew: Array<object[]>;
-    movieMostPopular: Array<object[]>;
-    Upcoming_movie: Array<object[]>
-}
-
-const initialState: movieState = {
-  moviesList: [],
-  movieFullList: [],
-  movie: 0,
-  crew: [],
-  movieMostPopular: [],
-  Upcoming_movie: []
-}
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const movieSlice = createSlice({
   name: "movie",
-  initialState,
+  initialState: {
+    moviesList: [],
+    movieFullList: [],
+    movie: [],
+    crew: [],
+    movieMostPopular: [],
+    Upcoming_movie: []
+  },
   reducers: {
     getUpcomingMovie(category) {
       return category;
     },
-    setUpcomingMovie: (state, { payload }: PayloadAction) => {
-      state.Upcoming_movie = payload;
+    setUpcomingMovie: (state, action) => {
+      state.Upcoming_movie = action.payload;
     },
     getCategoryMovies(category) {
       return category;
     },
-    setCategoryMovies: (state, { payload }: PayloadAction) => {
-      state.movieFullList = payload;
+    setCategoryMovies: (state, action) => {
+      state.movieFullList = action.payload;
     },
     getTheMostPopular(category) {
       return category;
     },
-    setTheMostPopular: (state, { payload }: PayloadAction) => {
-      state.movieMostPopular = payload;
+    setTheMostPopular: (state, action) => {
+      state.movieMostPopular = action.payload;
     },
     getMovies(name) {
       return name;
     },
-    setMovies: (state, { payload }: PayloadAction) => {
-      state.moviesList = payload;
+    setMovies: (state, action) => {
+      state.moviesList = action.payload;
     },
     getMovie(id) {
       return id;
     },
-    setMovie: (state, { payload }: PayloadAction) => {
-      state.movie = payload;
+    setMovie: (state, action) => {
+      state.movie = action.payload;
     },
     getCrew(id) {
       return id;
     },
-    setCrew: (state, { payload }: PayloadAction) => {
-      state.crew = payload;
+    setCrew: (state, action) => {
+      state.crew = action;
     },
   },
 });

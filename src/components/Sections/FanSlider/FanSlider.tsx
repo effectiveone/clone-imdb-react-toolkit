@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Rating } from '@mui/material';
 import styles from "./FanSlider.module.scss"
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
-import { getUpcomingMovie } from "../../../redux/reducers/movieSlice";
+import { getTheMostPopular } from "../../../redux/reducers/movieSlice";
 import SlideSchema from "./SlideSchema"
 import SliderArrows from "../HeroSlider/SliderArrows/SliderArrows"
 
@@ -17,13 +17,15 @@ const DecrementCountSlide = () => {
   };
 
     const dispatch = useAppDispatch();
-    const {  Upcoming_movie, isLoading } = useAppSelector(state=>state.movie);
-    const slides = Upcoming_movie?.results
+    const {  movieMostPopular, isLoading } = useAppSelector(state=>state.movie);
+    const {
+      lang
+      } = useAppSelector(state=>state.language);
+    const slides = movieMostPopular?.results
 
-console.log("slides", slides)
     useEffect(() => {
     
-    dispatch(getUpcomingMovie());
+    dispatch(getTheMostPopular(lang));
 
     }, [dispatch]);
   return (
@@ -37,10 +39,10 @@ console.log("slides", slides)
              {slides && (<> 
                 <div style={{display: "grid", gridTemplateColumns: "repeat(6, 1fr)", position: "relative", paddingBottom: "50px"}}>
                 {slides.slice(slideItem, (slideItem +6)).map((slide) => {
-console.log("imgFrom", slide.poster_path)
                     return (
                       <React.Fragment key={slide.id}>
                         <SlideSchema
+                        id={slide.id}
                title={slide.title}
                img={slide.poster_path}
                rank={slide.vote_average}

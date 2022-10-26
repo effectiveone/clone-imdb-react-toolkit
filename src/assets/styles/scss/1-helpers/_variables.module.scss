@@ -2,9 +2,27 @@
 $primary-color: #64ff00;
 $mainTextColor: #161616;
 $titleColor: rgb(245,197,24);
+$lightGrey: #3C3C3C;
+$hoverGrey: #4f4d4d;
+$crystal: white;
+$info-dark: #2c73cb;
+$red-dark: #d61f1f;
+$inverse-dark: #232a37;
 
 :export {
     primaryColor: $primary-color;
     mainTextColor: $mainTextColor;
+    infoDark: $info-dark;
+    redDark: $red-dark; 
+    inverseDark: $inverse-dark; 
 }
+
+/*Normal Color*/
+$white: #ffffff;
+$red: #fb3a3a;
+$yellow: #fed700;
+$purple: #7460ee;
+$blue: #02bec9;
+$megna: #1dc8cd;
+$orange: #ff6a5b;
 

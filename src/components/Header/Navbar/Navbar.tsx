@@ -107,7 +107,6 @@ const [name, setName] = useState("love");
     dispatch(getMovies(name));
   }, [name, dispatch]);
 
- console.log("moviesList",moviesList)
 
   const inputSearch = useRef();
 const Portals = () => {

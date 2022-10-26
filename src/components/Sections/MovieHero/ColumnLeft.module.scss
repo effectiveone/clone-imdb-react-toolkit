@@ -1,0 +1,26 @@
+@import 'assets/styles/scss/main.module.scss';
+
+
+.mains
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.border{
+    padding: 50px 0 50px 0;
+    border-left-style: 2px solid !important;
+    border-left-color:  $titleColor !important;
+       &> h2 {
+         line-height: 2.5rem;
+         text-decoration: inherit;
+         text-transform: inherit;
+         font-weight: 500;
+         font-size:  34px;
+         border-left-style: 2px solid !important;
+         border-left-color:  $titleColor !important;
+    
+ 
+       }  
+       
+   }

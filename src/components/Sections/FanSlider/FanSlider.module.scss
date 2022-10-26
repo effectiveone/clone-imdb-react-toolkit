@@ -1,10 +1,5 @@
-@mixin centerDiv {
-    display: flex;
-    justify-content: center;
-align-items: center;
-  }
+@import 'assets/styles/scss/main.module.scss';
 
-  $titleColor: rgb(245,197,24);
 
   .border{
    padding: 50px 0 50px 0;
@@ -50,8 +45,8 @@ align-items: center;
         color: white
     }
     &> div:nth-child(3) {
-        @include centerDiv;
-        background-Color: #3C3C3C;
+        @include flexCenter;
+        background-Color: $lightGrey;
         color: rgba(87, 153, 239, 1);
         white-space: nowrap;
         overflow: hidden;
@@ -61,9 +56,9 @@ align-items: center;
         }
     }
     &> div:nth-child(4) {
-        @include centerDiv;
+        @include flexCenter;
     &:hover {
-        background-color: #3C3C3C;
+        background-color: $lightGrey;
     }
     }
 }

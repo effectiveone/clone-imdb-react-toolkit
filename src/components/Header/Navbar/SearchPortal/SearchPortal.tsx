@@ -19,8 +19,6 @@ const SearchPortal = (props) => {
               return(
                 <React.Fragment key={uuid()}>
               <Grid  item>
-           
-
 
            <Card sx={{ display: 'flex',  alignItems:"center", background: "#313131" }} className={style.box}>
 <CardMedia
@@ -38,7 +36,7 @@ const SearchPortal = (props) => {
     <Typography variant="subtitle1" color="text.secondary" component="div">
     <p style={{color: "#BCBCBC"}}>({time?.getFullYear()})</p></Typography>
     <Typography variant="subtitle1" color="text.secondary" component="div">
-   <p style={{color: "#BCBCBC"}}>producent</p></Typography>
+   <p style={{color: "#BCBCBC"}}>Producent</p></Typography>
   </CardContent>
 </Box>
 </Card>     

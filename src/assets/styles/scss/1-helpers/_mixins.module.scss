@@ -1,0 +1,84 @@
+@mixin flexCenter {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+  }
+
+  @mixin column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @mixin responsive-ratio($x,$y, $pseudo: false) {
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    } @else {
+        padding-top: $padding;
+    }
+}
+
+
+@mixin box($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin flexCenterColumn {
+  @include flex-center;
+  flex-direction: column;
+}
+
+@mixin flexCenterRow {
+  @include flex-center;
+  flex-direction: row;
+}
+
+@mixin imageCoverDiv {
+  height: 100%;
+  width: 100%;
+   object-fit: contain;
+}
+
+@mixin coverBackground {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin backgroundTransition($initial, $hover, $inversed: false) {
+  background: linear-gradient(
+    90deg,
+    $hover 0%,
+    $hover 50%,
+    $initial 50%,
+    $initial 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+
+  background-position: right bottom;
+  @if $inversed {
+    background-position: left bottom;
+  }
+  transition: background-position 0.25s ease-out;
+
+  &:hover {
+    background-position: left bottom;
+    @if $inversed {
+      background-position: right bottom;
+    }
+  }
+}
+
+@mixin verticalCenter {
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

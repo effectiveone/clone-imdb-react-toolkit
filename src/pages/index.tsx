@@ -8,7 +8,6 @@ import FanSlider from 'components/Sections/FanSlider/FanSlider';
 import { Container } from '@mui/material';
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-
 const Home: NextPage = () => {
     
 
@@ -28,7 +27,6 @@ const Home: NextPage = () => {
           <meta content="width=device-width, initial-scale=1" name="viewport" />
   
         </Head>
-        
         <Header />
         <Container>
         <HeroSlider/>

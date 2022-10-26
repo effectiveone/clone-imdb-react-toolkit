@@ -3,18 +3,32 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import {BsFillCircleFill, BsCircle } from "react-icons/bs";
 
 import { IconContext } from "react-icons";
+import { useAppDispatch, useAppSelector } from '../../../../hooks/reduxHooks';
 
+import { getLanguage, setLanguage } from "../../../../redux/reducers/languageSlice";
 
 
 import styles from "./Language.module.scss";
 
 const Language: React.FC= () => {
-    const options = [{name: "English", comp: <BsCircle/>, short: "ENG"},
-    {name: "Italiano", comp: <BsCircle/>, short: "IT"},
-    {name: "Francais", comp: <BsCircle/>, short: "FR"},
-    {name: "Deutsch", comp: <BsCircle/>,  short: "DE"},
-    {name: "Portugues", comp: <BsCircle/>, short:  "PT"},
-    {name: "Espanol", comp: <BsCircle/>,   short:  "ES"},
+  const [name, setName] = useState("en");
+  const {
+    lang
+  } = useAppSelector((state) => ({ ...state.language }));
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    getLanguage();
+    dispatch(setLanguage(name));
+  }, [name, dispatch]);
+
+    const options = [{name: "English", comp: <BsCircle/>, short: "ENG", shorten: "en"},
+    {name: "Polski", comp: <BsCircle/>, short: "PL", shorten: "pl"},
+    {name: "Italiano", comp: <BsCircle/>, short: "IT", shorten: "it"},
+    {name: "Francais", comp: <BsCircle/>, short: "FR", shorten: "fr"},
+    {name: "Deutsch", comp: <BsCircle/>,  short: "DE", shorten: "de"},
+    {name: "Portugues", comp: <BsCircle/>, short:  "PT", shorten: "pt"},
+    {name: "Espanol", comp: <BsCircle/>,   short:  "ES", shorten: "es"},
 
 ];
 
@@ -26,7 +40,7 @@ const Language: React.FC= () => {
   const onOptionClicked = value => () => {
     setSelectedOption(value);
     setIsOpen(false);
-   console.log("value", value)
+    setName(options[value].shorten)
   };
 
   const inputElements = useRef<HTMLInputElement | null>(null);

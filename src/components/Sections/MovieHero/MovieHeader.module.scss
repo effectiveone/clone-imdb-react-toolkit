@@ -1,0 +1,44 @@
+@import 'assets/styles/scss/main.module.scss';
+
+.titles {
+    color: $crystal;
+    font-size: 35px;
+}
+
+.container {
+    display: flex;
+    // grid-template-columns: 3fr 1fr;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.firstGrid {
+ @include flexCenter;
+ flex-direction: row ;
+ gap: 10px;
+ grid-column: 1/2;
+ color: $crystal;
+
+}
+.secondGrid {
+  font-size: 20px;
+  display: flex;
+flex-direction: row;
+    color: $crystal;
+    grid-column: 2/3;
+  &> div {
+    padding: 0 10px 0 10px;
+  }
+  }
+
+    .star {
+      @include flexCenter;
+margin-left: -10px;
+    }
+
+    .clasters {
+      &:hover {
+        background-color: $hoverGrey !important;
+      }
+    }
+    

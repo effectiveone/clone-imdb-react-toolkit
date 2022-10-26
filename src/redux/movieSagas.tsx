@@ -1,5 +1,10 @@
 import { takeLatest, put, fork, call } from "redux-saga/effects";
-import { fetchMovie, fetchMovies, fetchAllMovie, fetchCrew, fetchTheMostPopularMovie, fetchUpcomingMovie } from "./Api";
+import { fetchMovie,
+   fetchMovies,
+    fetchAllMovie, 
+    fetchCrew,
+     fetchTheMostPopularMovie, 
+     fetchUpcomingMovie } from "./Api";
 import {
   getCrew,
   setCrew,
@@ -15,10 +20,15 @@ import {
   setUpcomingMovie
 } from "./reducers/movieSlice";
 
+
+
+
+
 function* onLoadMoviesAsync({ payload }) {
   try {
+
     const movieName = payload;
-    const response = yield call(fetchMovies, movieName);
+    const response = yield call(fetchMovies, movieName );
     if (response.status === 200) {
       yield put(setMovies({ ...response.data }));
     }
@@ -40,6 +50,8 @@ function* onLoadMovieAsync({ payload }) {
 }
 
 function* onLoadCrewAsync({ payload }) {
+
+
   try {
     const crewID = payload;
     const response = yield call(fetchCrew, crewID);
@@ -66,6 +78,7 @@ function* onLoadCategoryMoviesAsync({ payload }) {
 
 function* onLoadTheMostPopularAsync({ payload }) {
   try {
+
     const categoryName = payload;
     const response = yield call(fetchTheMostPopularMovie, categoryName);
     if (response.status === 200) {
@@ -77,6 +90,7 @@ function* onLoadTheMostPopularAsync({ payload }) {
 }
 
 function* onLoadUpcomingMovieAsync({ payload }) {
+
   try {
     const categoryName = payload;
     const response = yield call(fetchUpcomingMovie, categoryName);
@@ -94,7 +108,7 @@ function* onLoadUpcomingMovie() {
 }
 
 function* onLoadTheMostPopularMovie() {
-  yield takeLatest(getTheMostPopular.type, onLoadTheMostPopularAsync);
+  yield takeLatest(getTheMostPopular.type , onLoadTheMostPopularAsync);
 }
 
 function* onLoadCategoryMovies() {
@@ -102,7 +116,8 @@ function* onLoadCategoryMovies() {
 }
 
 function* onLoadMovies() {
-  yield takeLatest(getMovies.type, onLoadMoviesAsync);
+  yield takeLatest( getMovies.type, onLoadMoviesAsync);
+
 }
 
 function* onLoadMovie() {

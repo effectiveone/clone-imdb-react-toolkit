@@ -1,3 +1,5 @@
+@import 'assets/styles/scss/main.module.scss';
+
 .results {
     height: 50px;
      background: #313131; 
@@ -10,11 +12,11 @@
       }
 
       &:hover {
-        background: #4f4d4d;
+        background: $hoverGrey;
 
       }
 }
 
 .box:hover {
-    background: #4f4d4d;
+    background: $hoverGrey;
 }
