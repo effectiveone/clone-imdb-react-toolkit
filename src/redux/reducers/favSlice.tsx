@@ -16,10 +16,13 @@ export const favSlice = createSlice({
      else {
       state.fav.push({
         id: payload.id,
-        img: payload.img,
+        poster_path: payload.poster_path,
         title: payload.title,
-        rate: payload.rate,
         type: payload.type,
+        overview: payload.overview,
+        genre_ids: payload.genre_ids,
+        vote_average: payload.vote_average,
+        release_date: payload.release_date
       })
     }
     },

@@ -42,10 +42,14 @@ const DecrementCountSlide = () => {
                     return (
                       <React.Fragment key={slide.id}>
                         <SlideSchema
-                        id={slide.id}
-               title={slide.title}
-               img={slide.poster_path}
-               rank={slide.vote_average}
+                        {...slide}
+              //               type={slide.type}
+              //                 release_date={slide.release_date}
+              //                 overview={slide.overview}
+              //           id={slide.id}
+              //  title={slide.title}
+              //  img={slide.poster_path}
+              //  rank={slide.vote_average}
                /> 
                       {slideItem > 0 && (    <div style={{ position: "absolute", top: "30%", left: "-2%" }}>
             <SliderArrows

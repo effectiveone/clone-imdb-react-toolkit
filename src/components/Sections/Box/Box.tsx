@@ -11,7 +11,7 @@ import styles from "./Box.module.scss"
 import { CardActionArea } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import { getTheMostPopular } from "../../../redux/reducers/movieSlice";
-
+import Link from "next/link"
 import apiConfig from "../../../redux/apiConfig"
 
 
@@ -73,7 +73,7 @@ function Box() {
   <ActionAreaCard 
   image={apiConfig.w500Image(movie.poster_path)}
   title={movie.title}
-
+id={movie.id}
   />
       {slideItem > 0 && (    <div className={styles.arrow} style={{ position: "absolute", top: "50%", left: "-2%" }}>
             <SliderArrows
@@ -133,15 +133,15 @@ function ActionAreaCard(props: any) {
   return (
     <Card sx={{ maxWidth: 400 }} style={{margin: "30px, 50px, 0px, 50px", padding: "30px, 50px, 0px, 50px"}}>
       <CardActionArea>
-        <CardMedia
+       <Link href={`/movie/${props.id}`}><CardMedia
           component="img"
           height="223"
           image={props.image}
           alt="green iguana"
-        />
+        /></Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {props.title}
+          <Link href={`/movie/${props.id}`}>{props.title}</Link>
           </Typography>
           {props.content   &&(     <Typography variant="body2" color="text.secondary">
             {props.content}

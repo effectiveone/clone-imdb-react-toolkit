@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef} from 'react'
-import Link from 'next/link';
+import Link from 'next/link'
 import uuid from 'react-uuid';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 // import { useDispatch, useSelector } from "react-redux";
@@ -79,6 +79,8 @@ const Search = styled('div')(({ theme }) => ({
      justifyContent: 'center',
    }));
    
+
+
    const StyledInputBase = styled(InputBase)(({ theme }) => ({
      color: 'inherit',
      '& .MuiInputBase-input': {
@@ -93,8 +95,25 @@ const Search = styled('div')(({ theme }) => ({
      },
    }));
 
+   const ReffedInputBase = React.forwardRef((props, ref) => {
+    // const inputSearch = useRef();
+    return (<StyledInputBase  
+    ref={ref}
+    value={props.name}
+    placeholder="Search…"
+    inputProps={{ 'aria-label': 'search' }}
+    onChange={({target: {value}}) => {
+     props.setName(value)
+      props.setOpen(true)
+}} />);
+  });
+  ReffedInputBase.muiName = "StyledInputBase";
+
+
 
 const Navbar: React.FC = () => {
+  const inputSearch = useRef();
+
 // Search Portal
 const [name, setName] = useState("love");
   const [open, setOpen] = useState(false);
@@ -108,7 +127,6 @@ const [name, setName] = useState("love");
   }, [name, dispatch]);
 
 
-  const inputSearch = useRef();
 const Portals = () => {
   if (!open) return null;
   return ReactDOM.createPortal(
@@ -162,6 +180,9 @@ const Portals = () => {
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+
+
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -219,7 +240,7 @@ const Portals = () => {
 
 
       </MenuItem>
-      <p>   Watchlist</p>
+     <Link href="/Watchlist"><p>Watchlist</p></Link>
     </Menu>
   );
   return (
@@ -244,7 +265,7 @@ const Portals = () => {
            
              <IconContext.Provider value={{ color: "rgb(245,197,24)",   className: "global-class-name", style: { width: '100px', height: "50px" } }}>
           <div>
-          <FaImdb/>
+          <Link href="/"><FaImdb/></Link>
           </div>
         </IconContext.Provider>
           </Typography>
@@ -258,10 +279,16 @@ const Portals = () => {
           <MenuChanger>  <MenuIcon /><p style={{fontSize: "16px"}}>Menu</p> </MenuChanger>
           </IconButton>
      
-     <SearchContainer> <SearchBox/>
+     <SearchContainer>
+       <SearchBox/>
           <Search>
-  
-            <StyledInputBase
+  <ReffedInputBase
+  name={name}
+  setName={ setName}
+  setOpen={ setOpen}
+  ref={inputSearch}
+  />
+            {/* <StyledInputBase
               ref={inputSearch}
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
@@ -270,7 +297,7 @@ const Portals = () => {
                 setOpen(true)
                
               }}
-            />
+            /> */}
           </Search>
           
           <SearchIconWrapper>
@@ -291,10 +318,10 @@ const Portals = () => {
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
         
               <Badge  color="error">
-                <AddIcon />
+              <Link href="/Watchlist"><AddIcon /></Link>
               </Badge>
             </IconButton>
-       <p style={{display: "flex", alignItems: "center"}}>Watchlist</p>
+            <Link href="/Watchlist"><p style={{display: "flex", alignItems: "center"}}>Watchlist</p></Link>
 
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
