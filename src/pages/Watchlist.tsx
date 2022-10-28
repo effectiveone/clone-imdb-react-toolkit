@@ -16,7 +16,7 @@ import { Container } from '@mui/material';
 
 const Watchlist:React.FC = () =>  {
   const [downAndUp, setDownAndUp] = useState(true)
-  const [sortMethod, setSortMethod] = useState()
+  const [sortMethod, setSortMethod] = useState("title")
 const handleChange = (e) => {
   setSortMethod(e.target.value)
 }
@@ -29,7 +29,6 @@ const handleChange = (e) => {
     return string?.length > num ? string.substr(0, num - 1) + "..." : string;
   };
 
-  console.log("data", data)
 
 
 const sortingMethod = (a, b) => {
@@ -74,7 +73,7 @@ const favPartList = (<React.Fragment>
 </div>
 <div style={{display: "flex", flexDirection: "column", alignItems: "flex-start", paddingLeft: "20px" }}>
 <h2 style={{color: "#5E84DF"}}>{data?.title}</h2>
-<div style={{borderRadius: "10px", border: "1px solid white", backgroundColor: "grey"}}>{data?.genres_id?.map((gen)=> (<p style={{color: "white"}}>gen</p>))}</div>
+<div style={{borderRadius: "10px", border: "1px solid white", backgroundColor: "grey"}}>{data?.genres_id?.map((gen)=> (<p style={{color: "white"}} key={uuid()}>gen</p>))}</div>
 <span>{data?.release_date}  </span>
   <p>  { truncate(data?.overview, 100)}</p>
 </div>

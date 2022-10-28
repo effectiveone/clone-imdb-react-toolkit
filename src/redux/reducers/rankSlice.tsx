@@ -8,13 +8,26 @@ export const rankSlice = createSlice({
   name: "rank",
   initialState,
   reducers: {
-    rankAdd: (state, { payload }: PayloadActionInterface) => {
-      let index = state.rank.findIndex(i=>i.id == payload.id)
-      state.rank.splice(index, 1)
-      state.rank.push({
-        id: payload.id,
-        updatedRankingMovie: payload.updatedRankingMovie
-      })
+    rankAdd: (state, { payload }) => {
+      // let index = state.rank.findIndex(i=>i.id == payload.id)
+      // state.rank.splice(index, 1)
+
+
+   const index =   state.rank.find(z=> z.id === payload.id) 
+
+if(index){
+
+  index.updatedRankingMovie = payload.updatedRankingMovie
+} else {
+
+          state.rank.push({
+            id: payload.id,
+            updatedRankingMovie: payload.updatedRankingMovie
+          })
+
+        }
+
+      
     },
 
     rankRemove: (state, { payload }: PayloadActionInterface) => {
@@ -33,7 +46,7 @@ export const { rankAdd, rankRemove } = rankSlice.actions;
 export default rankSlice.reducer;
 
 
-interface PayloadActionInterface {
-  id: number,
-  rank: number
-}
+// interface PayloadActionInterface {
+//   id: number,
+//   rank: number
+// }

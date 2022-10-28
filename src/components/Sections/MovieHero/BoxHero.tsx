@@ -1,32 +1,73 @@
-import react from  "react";
+import react, {useState, useEffect} from "react"
+import { BsBookmarkPlusFill } from 'react-icons/bs';
+import { IconContext } from 'react-icons';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
+import { favAdd } from "../../../redux/reducers/favSlice";
 import style from "./BoxHero.module.scss";
 import { Divider } from '@mui/material';
-import { AiOutlinePlus} from 'react-icons/ai';
-import { BiChevronDown, BiChevronUp } from "react-icons/bi";
-import { IconContext } from "react-icons";
+import { AiOutlinePlus, AiOutlineCheck} from 'react-icons/ai';
+import { BiChevronDown } from "react-icons/bi";
+import uuid from "react-uuid"
+// type AppProps = {
+//     genre: string[],
+//     description: string | null,
+//     production_companies: string[],
+//     production_countries: string[],
+//   }
 
-type AppProps = {
-    genre: string[],
-    description: string | null,
-    production_companies: string[],
-    production_countries: string[],
-  }
+const BoxHero:React.FC = (props) => {
 
-const BoxHero:React.FC = ({
-    genre,
-description,
-production_companies,
-production_countries,
-}:AppProps) => {
 
+    const dispatch = useAppDispatch();
+    const favorites = useAppSelector((state) => state?.favorite?.fav);
+    const [likes, setLikes] = useState([]);
+    useEffect(() => {
+        const zonk =  Object.values(favorites.map(z => z.id))
+        setLikes(likes=>([
+          ...likes,
+          ...zonk]
+        ))
+    
+    
+      },
+        [favorites])
+
+        const FavHanlder = (item, index) => {
+            setLikes(likes=>([
+              ...likes,
+              item.id]
+           ))
+            dispatch(
+              favAdd({
+                id: props.id,
+                poster_path: props.poster_path,
+                title: props.title,
+                type: props.type,
+                overview: props.overview,
+                genre_ids: props.genre_ids,
+                vote_average: props.vote_average,
+                release_date: props.release_date
+             
+              })
+              
+            );
+          };
+
+
+ 
+
+          
     const watchList = (
         <div className={style.watchList}>
-        <IconContext.Provider value={{ color: "white", size: "30px", className: "iconClass",   }}>
+         <IconContext.Provider value={{ color: likes.includes(props.id) ? "rgb(245,197,24)" : "3C3C3C", size: "30px", className: "iconClass",   }}>
+          
+          <div className="fav" onClick={() => FavHanlder(props)}>
+              {likes.includes(props.id) ?    <AiOutlineCheck/> : <AiOutlinePlus/>}
+                </div>
+        
+        </IconContext.Provider>
     
-        <div style={{width: "250px", }}>
-    <p><AiOutlinePlus/></p>
-    <span>Add to watchlist</span></div>
-    </IconContext.Provider></div>
+    </div>
     )
 
     const dropDown = (
@@ -42,20 +83,20 @@ production_countries,
 <div className={style.main} >
 <div className={style.bigger}>
     <div>
-{genre?.map((gen) => (
-    <div className={style.border} style={{paddingRight: "20px"}} key={gen}>
-        {gen.name}
+{props.genre?.map((gen) => (
+    <div className={style.border} style={{paddingRight: "20px"}} key={uuid()}>
+       <p> {gen.name}</p>
     </div>
 ))}</div>
 <Divider sx={{backgroundColor: "white"}} />
 <div style={{fontSize: "20px"}}>
-    {description}
+    {props.description}
     </div>
     <Divider sx={{backgroundColor: "white"}} />
     <div className={style.production}>
 
 <p style={{paddingRight: "25px"}}>Kraje produkcji:   </p>   
-{production_countries?.map((gen, ind, {length}) => (<>
+{props.production_countries?.map((gen, ind, {length}) => (<>
       <p style={{paddingRight: "5px"}}>{gen.name}</p>{length - 1  !== ind && (<>|</>)}
       </>
 ))}
@@ -64,7 +105,7 @@ production_countries,
 <div className={style.production}>
   <p style={{paddingRight: "25px"}}> Producenci:</p> 
   
-{production_companies?.map((gen, ind, {length}) => (<>
+{props.production_companies?.map((gen, ind, {length}) => (<>
         <p style={{paddingRight: "5px"}}>{gen.name} </p>{length - 1  !== ind && (<>|</>)}
         </>
 ))}</div>

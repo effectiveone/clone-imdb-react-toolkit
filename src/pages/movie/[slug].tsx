@@ -31,7 +31,6 @@ const Movie = () => {
       lang
       } = useAppSelector(state=>state.language);
     const { movie, crew } = useAppSelector((state) => ({ ...state.movie }));
-console.log("crew", crew)
 
     const favorites = useAppSelector((state) => state?.favorite?.fav);
 
@@ -85,21 +84,28 @@ console.log("crew", crew)
  
   return (<>
 <Navbar/>
-<h1 style={{color: "white"}}>Slug {slug}</h1>
 <div style={{backgroundColor: "#1F1F1F"}}>
 <Container>
   <MovieHeader
   title={movie.title}
   original={movie.original_title}
   year={time?.getFullYear()}
-  rank={movie.vote_average}
+  vote_overage={movie.vote_average}
   runtime={movie.runtime}
   vote_count={movie.vote_count}
+  sellectiveID={movie.id}
   />
 <MovieHero
   image={apiConfig.w500Image(movie.poster_path)}
   images={apiConfig.w500Image(movie.backdrop_path)}
-
+  id={ movie.id}
+  poster_path={ movie.poster_path}
+  title={ movie.title}
+  type={ movie.type}
+  overview={movie.overview}
+  genre_ids={ movie.genre_ids}
+  vote_average={ movie.vote_average}
+  release_date={ movie.release_date}
   numberVideo={"No date"}
    numberPHOTO={"No date"}
   />
@@ -108,6 +114,14 @@ genre={movie.genres}
 description={movie.overview}
 production_companies={movie.production_companies}
 production_countries={movie.production_countries}
+id={ movie.id}
+poster_path={ movie.poster_path}
+title={ movie.title}
+type={ movie.type}
+overview={movie.overview}
+genre_ids={ movie.genre_ids}
+vote_average={ movie.vote_average}
+release_date={ movie.release_date}
 
 />
 

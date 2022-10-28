@@ -1,9 +1,8 @@
 import React from  "react";
 import style from "./ColumnLeft.module.scss";
 import apiConfig from "../../../redux/apiConfig"
-
+import uuid  from "react-uuid"
 const ColumnLeft:React.FC = ({cast}) => {
-    console.log("FromCast", cast)
     return (
         <React.Fragment>
             
@@ -12,7 +11,9 @@ const ColumnLeft:React.FC = ({cast}) => {
    className={style.border}
     ><h2 style={{fontSize:"28px", color: "black", borderLeft: "3px solid rgb(245,197,24)"}}>Top cast</h2></div><div></div>
 {cast?.map((cas)=>
-   (<React.Fragment>
+   (<React.Fragment
+   key={uuid()}
+   >
 
     <div style={{
         display: "grid",

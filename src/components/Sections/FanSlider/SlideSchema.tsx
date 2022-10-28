@@ -1,12 +1,12 @@
-import react, {useState, useEffect} from "react"
 import styles from "./FanSlider.module.scss"
 import { Rating } from '@mui/material';
 import apiConfig from "../../../redux/apiConfig"
 import Link from 'next/link';
 import { AiOutlinePlus, AiOutlineStar, AiFillStar } from 'react-icons/ai';
 
-import { BsBookmarkPlusFill, BsFillBookmarkCheckFill, BsCheckLg } from 'react-icons/bs';
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
+import react, {useState, useEffect} from "react"
+import { BsBookmarkPlusFill, BsFillBookmarkCheckFill, BsCheckLg } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import { favAdd } from "../../../redux/reducers/favSlice";
@@ -23,7 +23,8 @@ const SlideSchema = (props: any) =>  {
     const rank = useAppSelector((state) => state?.rank.rank);
 
     const [likes, setLikes] = useState([]);
-    const [ranks, setRanks] = useState([]);
+
+    const [ranksList, setRanksList] = useState([]);
 
   
     useEffect(() => {
@@ -40,8 +41,8 @@ const SlideSchema = (props: any) =>  {
 
       useEffect(() => {
         const ponk =  Object.values(rank.map(z => z.id))
-        setLikes(likes=>([
-          ...likes,
+        setRanksList(prev=>([
+          ...prev,
           ...ponk]
         ))
     
@@ -74,8 +75,8 @@ const SlideSchema = (props: any) =>  {
 
       const [ranking, setRanking] = useState<number | null>();
 const RankHandler = (item, updatedRanking) => {
-  setRanks(likes=>([
-    ...likes,
+  setRanksList(ranks=>([
+    ...ranks,
     item.id]
  ))
   dispatch(
@@ -103,6 +104,8 @@ const addButton = (
 </div>
 )
 
+
+
 const [isOpen, setIsOpen]= useState<boolean>(false)
 const handleModal = () => {
   setIsOpen(!isOpen)
@@ -112,6 +115,9 @@ const Pixels = (e) => {
   const px = e*3;
   return px + 'px'
 }
+
+
+
 
 const schemaModal = (<Modal
   // backgroundColor: "#1A1A1A"
