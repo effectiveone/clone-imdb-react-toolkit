@@ -16,7 +16,8 @@ import Navbar from "../../components/Header/Navbar/Navbar"
 import Footer from "../../components/Footer/Footer";
 import SearchPage from "../../components/Sections/SearchPage/SearchPage"
 import CategoryPanel from "../../components/Sections/SearchPage/CategoryPanel"
-
+import { Grid, Pagination } from "@mui/material";
+import Stack from '@mui/material/Stack';
 
 import { Container } from '@mui/material';
 
@@ -101,10 +102,24 @@ const Movie = () => {
 <div style={{backgroundColor: "white"}}>
 <Container >
 <div style={{display: "grid", gridTemplateColumns: "2fr 1fr", gap: "20px",  paddingTop: "20px"}}>
+<div>
 <SearchPage
 slug={slug}
 movie={moviesList}
 />
+<Stack spacing={2}>
+<Pagination count={moviesList?.total_pages} 
+variant="outlined"
+ shape="rounded" 
+ color="secondary"
+ hidePrevButton
+  hideNextButton
+  onChange={(e, page) => {
+    const number = parseFloat(page)
+    router.push(`/search/${slug}&page=${number}`)}}
+  />
+  </Stack>
+</div>
 <CategoryPanel/>
   </div>
    </Container>

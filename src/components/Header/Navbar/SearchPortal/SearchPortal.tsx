@@ -6,6 +6,7 @@ import apiConfig from "../../../../redux/apiConfig";
 import Box from '@mui/material/Box';
 import { Divider } from '@mui/material';
 import style from "./SearchPortal.module.scss"
+import Link from 'next/link';
 
 const SearchPortal = (props) => {
 
@@ -21,17 +22,17 @@ const SearchPortal = (props) => {
               <Grid  item>
 
            <Card sx={{ display: 'flex',  alignItems:"center", background: "#313131" }} className={style.box}>
-<CardMedia
+           <Link href={`/movie/${item.id}`}><CardMedia
   component="img"
   height="100"
   sx={{ width: 81, paddingLeft: "10px" }}
   image={`${apiConfig.w500Image(item.poster_path)}`}
   alt="Live from space album cover"
-/>
+/></Link>
 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
   <CardContent sx={{ flex: '1 0 auto', color: "white" }}>
     <Typography component="div" variant="h5">
-    {item.original_title}
+   <Link href={`/movie/${item.id}`}><p>{item.original_title}</p></Link>
     </Typography>
     <Typography variant="subtitle1" color="text.secondary" component="div">
     <p style={{color: "#BCBCBC"}}>({time?.getFullYear()})</p></Typography>
@@ -47,7 +48,7 @@ const SearchPortal = (props) => {
               </React.Fragment>
             )})}
             <div  className={style.results} >
-                <p  >See all results for "{props.name}"</p></div>
+                <Link href={`/search/${props.name}`}><p>See all results for "{props.name}"</p></Link></div>
 
     </div>
   );

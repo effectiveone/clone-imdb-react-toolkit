@@ -18,7 +18,8 @@ import Footer from "../../components/Footer/Footer";
 import SearchPage from "../../components/Sections/SearchPage/SearchPage"
 import CategoryPanel from "../../components/Sections/SearchPage/CategoryPanel"
 
-
+import { Grid, Pagination } from "@mui/material";
+import Stack from '@mui/material/Stack';
 import { Container } from '@mui/material';
 
 const Movie = () => {
@@ -46,10 +47,10 @@ const Movie = () => {
 
           
 
+      const { category, loading } = useAppSelector(state=>state.category);
 
 
-  
-  
+  const nameOfCurrentCategory = category.genres.find(cat => parseInt(cat.id) === parseInt(slug))
 
   if(isLoading){return "Loading...."}
 
@@ -60,10 +61,24 @@ const Movie = () => {
 <div style={{backgroundColor: "white"}}>
 <Container >
 <div style={{display: "grid", gridTemplateColumns: "2fr 1fr", gap: "20px",  paddingTop: "20px"}}>
-<SearchPage
-slug={slug}
+<div><SearchPage
+slug={nameOfCurrentCategory.name ?? slug}
 movie={movieFullList}
 />
+<Stack spacing={2}>
+<Pagination count={movieFullList?.total_pages} 
+variant="outlined"
+ shape="rounded" 
+ color="secondary"
+ hidePrevButton
+  hideNextButton
+  onChange={(e, page) => {
+    const number = parseFloat(page)
+    router.push(`/category/${slug}&page=${number}`)}}
+  />
+  </Stack>
+  </div>
+
 <CategoryPanel/>
   </div>
    </Container>

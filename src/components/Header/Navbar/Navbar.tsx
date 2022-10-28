@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import {Container} from "@mui/material"
 import { getCategoryMovies } from "../../../redux/reducers/categorySlice";
 import { getMovies } from "../../../redux/reducers/movieSlice";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+// import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -301,18 +301,18 @@ const Portals = () => {
           </Search>
           
           <SearchIconWrapper>
-<SearchIcon />
+<Link href={`/search/${name}`}><SearchIcon /></Link>
 </SearchIconWrapper>
           </SearchContainer>
           <Portals/>
           <Divider orientation="vertical" flexItem style={{color: "green"}} />
 
-          <Box sx={{ flexGrow: 1, alignItems: "center" }} >
+          {/* <Box sx={{ flexGrow: 1, alignItems: "center" }} >
           <Badge  color="error">
                 <FavoriteIcon />
               </Badge>
               </Box>
-              <p style={{display: "flex", alignItems: "center"}}>Favorite</p>
+              <p style={{display: "flex", alignItems: "center"}}>Favorite</p> */}
 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">

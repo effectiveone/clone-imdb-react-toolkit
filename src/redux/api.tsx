@@ -8,7 +8,7 @@ const { baseUrl, API_ENDPOINT, category, the_most_popular, Upcoming_movie } = ap
 export const fetchMovies = async (movieName: string, language: string) =>
   axios.get(`${API_ENDPOINT}&query=${movieName}&language=${language}`);
 
-export const fetchAllMovie = async (categoryID: string ) =>
+export const fetchAllMovie = async (categoryID: number, language: string) =>
   axios.get(
     `${baseUrl}/discover/movie?api_key=${apiKey.key}&language=${language}S&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6&with_genres=${categoryID}`
   );
@@ -32,7 +32,7 @@ export const fetchCrew = async (movieId: number, language: string) =>
     `${baseUrl}/movie/${movieId}/credits?api_key=${apiKey.key}&language=${language}`
   )
 
-  export const fetchCategory = async (movieId: string, language: string) =>
+  export const fetchCategory = async ( language: string) =>
   axios.get(
     `${category}&language=${language}`
   )
