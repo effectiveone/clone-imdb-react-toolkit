@@ -7,7 +7,7 @@
   <h1 align="center">NextJS, Typescript, Material UI, SASS, Redux Toolkit, Jest, React Testing Library, Prettier Boilerplate</h1>
 
   ## Preview
-![Design preview for the Entertainment web app coding challenge](.src/assets/images/imdb/mainimdb.png)
+![Design preview for the Entertainment web app coding challenge](./src/assets/images/imdb/mainimdb.png)
 
 #  IMDB-CLONE - Redux Toolkit
 
@@ -76,10 +76,10 @@ yarn start
 ```
 
 ## Screenshots
-![Design preview for the Entertainment web app coding challenge](.src/assets/images/imdb/imdb1.png)
-![Design preview for the Entertainment web app coding challenge](.src/assets/images/imdb/imdb2.png)
-![Design preview for the Entertainment web app coding challenge](.src/assets/images/imdb/imdb3.png)
-![Design preview for the Entertainment web app coding challenge](.src/assets/images/imdb/imdb4.png)
+![Design preview for the Entertainment web app coding challenge](./src/assets/images/imdb/imdb1.png)
+![Design preview for the Entertainment web app coding challenge](./src/assets/images/imdb/imdb2.png)
+![Design preview for the Entertainment web app coding challenge](./src/assets/images/imdb/imdb3.png)
+![Design preview for the Entertainment web app coding challenge](./src/assets/images/imdb/imdb4.png)
 
 ## 👨‍💻 Connect with me 
 mail: konrad.gruca90@gmail.com
